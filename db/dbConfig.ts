@@ -8,7 +8,7 @@ const dataSource = new DataSource({
     port: 3306,
     username: "root",
     password: "",
-    database: "books-db",
+    database: "book-db",
     synchronize: true,
     logging: false,
     entities: [Book]
