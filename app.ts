@@ -3,6 +3,7 @@ import express from 'express';
 import env from "dotenv";
 import bookRoute from "./routes/book.js"
 import dataSource from "./db/dbConfig.js";
+import { customErrorHandler, DefaultErrorHandler } from "./middleware/errorhandler.js";
 
 const app = express();
 env.config();
@@ -15,6 +16,9 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/books", bookRoute);
 
+app.use(customErrorHandler)
+
+app.use(DefaultErrorHandler)
 
 dataSource.initialize().then(() => {
     console.log("connected to DB");
